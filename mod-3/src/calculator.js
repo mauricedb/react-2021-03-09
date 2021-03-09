@@ -1,5 +1,5 @@
-class Calculator {
-  add(x, y) {
+export class Calculator {
+  static add(x, y) {
     return x + y;
   }
 }
