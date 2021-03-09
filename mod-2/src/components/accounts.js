@@ -1,12 +1,28 @@
 import React from 'react';
 
-const url = 'https://the-problem-solver-sample-data.azurewebsites.net/accounts';
+export function Accounts({ url }) {
+  //   const url =
+  //     'https://the-problem-solver-sample-data.azurewebsites.net/accounts';
 
-export function Accounts() {
+  const [accounts, setAccounts] = React.useState([]);
+  React.useEffect(() => {
+    async function loadData() {
+      const rsp = await fetch(url);
+      const accounts = await rsp.json();
+      setAccounts(accounts);
+    }
+
+    if (url) {
+      loadData();
+    }
+
+    // return () => {}
+  }, [url]);
+
   return (
     <div>
       <h2>Accounts</h2>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Firstname</th>
@@ -16,12 +32,14 @@ export function Accounts() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Firstname</td>
-            <td>Surname</td>
-            <td>E-Mail</td>
-            <td>Balance</td>
-          </tr>
+          {accounts.map((a) => (
+            <tr key={a.id}>
+              <td>{a.firstname}</td>
+              <td>{a.surname}</td>
+              <td>{a.email}</td>
+              <td>{a.balance}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
