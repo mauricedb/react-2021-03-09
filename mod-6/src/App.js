@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  HashRouter,
+  Route,
+  Switch,
+  Link,
+} from 'react-router-dom';
 import './App.css';
 
 import { Cat } from './components/Cat';
@@ -7,19 +14,43 @@ import notFound from './components/404.jpg';
 
 function App() {
   return (
-    <div>
-      <header>
-        <ul>
-          <li>Home</li>
-          <li>Cat</li>
-          <li>Dog</li>
-        </ul>
-      </header>
+    <BrowserRouter>
+      <div>
+        <header>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/cat">Cat</Link>
+            </li>
+            <li>
+              <Link to="/dog">Dog</Link>
+            </li>
+          </ul>
+        </header>
 
-      <Cat />
-      <Dog />
-      <img src={notFound} alt="Route not found" />
-    </div>
+        <Switch>
+          <Route path="/cat/:catName">
+            <Cat />
+          </Route>
+          <Route path="/cat">
+            <Cat />
+          </Route>
+          <Route path="/dog">
+            <Dog />
+          </Route>
+
+          <Route path="/" exact>
+            <p>Make your choice</p>
+          </Route>
+
+          <Route>
+            <img src={notFound} alt="Route not found" />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
