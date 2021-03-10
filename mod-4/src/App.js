@@ -1,13 +1,17 @@
+import { Provider } from 'react-redux';
+
 import { Page } from './components/page';
 
-import jokes from './data/jokes.json';
+import { store } from './redux/store';
 
 function App() {
   return (
-    <div>
-      <h1>Redux</h1>
-      <Page jokes={jokes} />
-    </div>
+    <Provider store={store}>
+      <div>
+        <h1>Redux</h1>
+        <Page />
+      </div>
+    </Provider>
   );
 }
 
