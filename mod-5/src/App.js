@@ -16,8 +16,8 @@ const initialPerson = {
 function App() {
   return (
     <div className="container">
-      <UncontrolledPersonForm initialPerson={initialPerson} />
-      {/* <ControlledPersonForm initialPerson={initialPerson} /> */}
+      {/* <UncontrolledPersonForm initialPerson={initialPerson} /> */}
+      <ControlledPersonForm initialPerson={initialPerson} />
     </div>
   );
 }
